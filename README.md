@@ -1,4 +1,4 @@
-# Interbay
+# Interbay -- InterSpace
 
 [Website](https://discord.gg/sRfRyXF/) - [Code](https://github.com/SosakiDevelopmentTeam/Interbay/)
 ---
