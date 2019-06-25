@@ -487,7 +487,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 /mob/proc/changeling_unstun()
 	set category = "Changeling"
 	set name = "Epinephrine Sacs (45)"
-	set desc = "Removes all stuns"
+	set desc = "Removes all stuns. Don't use it in rapid succession."
 
 	var/datum/changeling/changeling = changeling_power(45,0,100,UNCONSCIOUS)
 	if(!changeling)	return 0
@@ -500,6 +500,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.SetWeakened(0)
 	C.lying = 0
 	C.update_canmove()
+	C.reagents.add_reagent(/datum/reagent/adrenaline, 15) //Get them alive.
+	C.reagents.add_reagent(/datum/reagent/dexalinp, 10) //Get them awake.
 
 	src.verbs -= /mob/proc/changeling_unstun
 	spawn(5)	src.verbs += /mob/proc/changeling_unstun
@@ -812,3 +814,50 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 
 	feedback_add_details("changeling_powers","ED")
 	return 1
+
+/*Changeling weapons proc. Todo: Genericize this for armor. Maybe.*/
+
+//This is a generic proc that should be called by other ling weapon procs to equip them.
+/mob/proc/changeling_generic_weapon(var/weapon_type, var/make_sound = 1, var/cost = 20)
+	var/datum/changeling/changeling = changeling_power(cost,1,100)
+	if(!changeling)
+		return
+
+	if(!ishuman(src))
+		return 0
+
+	var/mob/living/carbon/human/M = src
+
+	M.drop_item()
+
+	if(M.l_hand && M.r_hand) //Make sure our hands aren't full. The above proc will prevent this, but just in case they have another armblade or something.
+		src << "<span class='warning'>Our hands are full.  Drop something first.</span>"
+		return 0
+
+
+	var/obj/item/weapon/W = new weapon_type(src)
+	src.put_in_hands(W)
+
+	src.mind.changeling.chem_charges -= cost
+	if(make_sound)
+		playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
+	return 1
+
+//Grows a scary, and powerful arm blade.
+/mob/proc/changeling_arm_blade()
+	set category = "Changeling"
+	set name = "Arm Blade (20)"
+
+	if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade))
+		return 1
+	return 0
+
+//Grows a scary shield..
+/mob/proc/changeling_shield()
+	set category = "Changeling"
+	set name = "Flesh Shield (20)"
+
+	if(changeling_generic_weapon(/obj/item/weapon/shield/riot/changeling))
+		return 1
+	return 0
+
