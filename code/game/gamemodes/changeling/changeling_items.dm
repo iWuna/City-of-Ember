@@ -95,7 +95,8 @@
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 
 /obj/item/weapon/shield/riot/changeling/Destroy()
-	STOP_PROCESSING(SSprocessing, src)
+	STOP_PROCESSING(SSobj, src)
+	creator = null
 	return ..()
 
 /obj/item/weapon/shield/riot/changeling/dropped(mob/user)

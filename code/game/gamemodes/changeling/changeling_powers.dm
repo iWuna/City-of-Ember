@@ -849,3 +849,13 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 	if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade))
 		return 1
 	return 0
+
+//Grows a scary shield..
+/mob/proc/changeling_shield()
+	set category = "Changeling"
+	set name = "Flesh Shield (20)"
+
+	if(changeling_generic_weapon(/obj/item/weapon/shield/riot/changeling))
+		return 1
+	return 0
+
