@@ -3,7 +3,7 @@
 	name = "arm blade"
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon_state = "arm_blade"
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_LARGE
 	force = 35
 	sharp = 1
 	edge = 1
