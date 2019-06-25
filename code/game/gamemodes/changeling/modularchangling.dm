@@ -482,3 +482,11 @@ var/list/datum/power/changeling/powerinstances = list()
 	else if(remake_verbs)
 		M.current.make_changeling()
 
+
+/*--------------New Powers---------------*/
+/datum/power/changeling/arm_blade
+	name = "Arm Blade"
+	desc = "We reform one of our arms into a deadly blade."
+	helptext = "We may retract our armblade by dropping it. Cannot be used while in lesser form."
+	genomecost = 4
+	verbpath = /mob/proc/changeling_arm_blade
