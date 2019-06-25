@@ -487,7 +487,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 /mob/proc/changeling_unstun()
 	set category = "Changeling"
 	set name = "Epinephrine Sacs (45)"
-	set desc = "Removes all stuns"
+	set desc = "Removes all stuns. Don't use it in rapid succession."
 
 	var/datum/changeling/changeling = changeling_power(45,0,100,UNCONSCIOUS)
 	if(!changeling)	return 0
@@ -500,6 +500,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.SetWeakened(0)
 	C.lying = 0
 	C.update_canmove()
+	C.reagents.add_reagent(/datum/reagent/adrenaline, 15)
 
 	src.verbs -= /mob/proc/changeling_unstun
 	spawn(5)	src.verbs += /mob/proc/changeling_unstun
