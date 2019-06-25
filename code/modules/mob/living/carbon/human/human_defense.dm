@@ -180,7 +180,7 @@ meteor_act
 		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
 		return null
 
-	
+
 	if(user.skillcheck(user.melee_skill, 60, 0) == CRIT_FAILURE)
 		user.resolve_critical_miss(I)
 		return null
@@ -504,6 +504,9 @@ meteor_act
 
 /mob/living/carbon/human/embed(var/obj/O, var/def_zone=null, var/datum/wound/supplied_wound)
 	if(!def_zone) ..()
+
+	if(O.obj_flags & OBJ_FLAG_NO_EMBED)
+		return
 
 	var/obj/item/organ/external/affecting = get_organ(def_zone)
 	if(affecting)
