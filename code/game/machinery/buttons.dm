@@ -3,6 +3,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
 	desc = "A remote control switch for something."
+	layer = ABOVE_WINDOW_LAYER
 	var/id = null
 	var/active = 0
 	var/operating = 0
@@ -210,6 +211,7 @@
 	name = "remote valve control"
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
+	var/command = "valve_toggle"
 
 /obj/machinery/button/toggle/valve/Initialize()
 	. = ..()
@@ -228,7 +230,7 @@
 	signal.source = src
 	signal.frequency = frequency
 	signal.data["tag"] = id
-	signal.data["command"] = "valve_toggle"
-	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
+	signal.data["command"] = command
+	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 	active = !active
 	update_icon()
