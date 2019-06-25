@@ -500,7 +500,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.SetWeakened(0)
 	C.lying = 0
 	C.update_canmove()
-	C.reagents.add_reagent(/datum/reagent/adrenaline, 15)
+	C.reagents.add_reagent(/datum/reagent/adrenaline, 15) //Get them alive.
+	C.reagents.add_reagent(/datum/reagent/dexalinp, 10) //Get them awake.
 
 	src.verbs -= /mob/proc/changeling_unstun
 	spawn(5)	src.verbs += /mob/proc/changeling_unstun

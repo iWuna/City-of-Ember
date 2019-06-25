@@ -496,6 +496,6 @@ var/list/datum/power/changeling/powerinstances = list()
 	desc = "We reform one of our arms into a muscle shield."
 	helptext = "We may deconstruct our shield by dropping it. Cannot be used in lesser form.."
 	genomecost = 4
-	verbpath = /mob/proc/changeling_arm_blade
+	verbpath = /mob/proc/changeling_shield
 
 
