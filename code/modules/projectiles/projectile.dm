@@ -374,8 +374,8 @@
 	// setup projectile state
 	starting = startloc
 	current = startloc
-	yo = targloc.y - startloc.y + y_offset
-	xo = targloc.x - startloc.x + x_offset
+	yo = round(targloc.y - startloc.y + y_offset, 1)
+	xo = round(targloc.x - startloc.x + x_offset, 1)
 
 	// trajectory dispersion
 	var/offset = 0
@@ -389,8 +389,8 @@
 
 	// generate this now since all visual effects the projectile makes can use it
 	effect_transform = new()
-	effect_transform.Scale(trajectory.return_hypotenuse(), 1)
-	effect_transform.Turn(-trajectory.return_angle())		//no idea why this has to be inverted, but it works
+	effect_transform.Scale(round(trajectory.return_hypotenuse() + 0.005, 0.001) , 1) //Seems like a weird spot to truncate, but it minimizes gaps.
+	effect_transform.Turn(round(-trajectory.return_angle(), 0.1) )		//no idea why this has to be inverted, but it works
 
 	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
 
@@ -403,8 +403,8 @@
 
 		if(istype(M))
 			M.set_transform(T)
-			M.pixel_x = location.pixel_x
-			M.pixel_y = location.pixel_y
+			M.pixel_x = round(location.pixel_x, 1)
+			M.pixel_y = round(location.pixel_y, 1)
 			if(!hitscan) //Bullets don't hit their target instantly, so we can't link the deletion of the muzzle flash to the bullet's Destroy()
 				spawn(1)
 					qdel(M)
@@ -417,8 +417,8 @@
 
 		if(istype(P))
 			P.set_transform(M)
-			P.pixel_x = location.pixel_x
-			P.pixel_y = location.pixel_y
+			P.pixel_x = round(location.pixel_x, 1)
+			P.pixel_y = round(location.pixel_y, 1)
 			if(!hitscan)
 				spawn(step_delay)	//if not a hitscan projectile, remove after a single delay. Do not spawn hitscan projectiles. EVER.
 					qdel(P)
@@ -431,8 +431,8 @@
 
 		if(istype(P))
 			P.set_transform(M)
-			P.pixel_x = location.pixel_x
-			P.pixel_y = location.pixel_y
+			P.pixel_x = round(location.pixel_x, 1)
+			P.pixel_y = round(location.pixel_y, 1)
 			segments += P
 
 //"Tracing" projectile
