@@ -179,8 +179,8 @@
 	health = 50
 	response_harm = "viciously beaten"
 	harm_intent_damage = 5
-	melee_damage_lower = 5
-	melee_damage_upper = 5
+	melee_damage_lower = 10
+	melee_damage_upper = 10
 	attacktext = "rammed"
 	speed = 0
 	environment_smash = 1
@@ -251,7 +251,6 @@
 	eye_glow.plane = EFFECTS_ABOVE_LIGHTING_PLANE
 	eye_glow.layer = EYE_GLOW_LAYER
 	overlays += eye_glow
-	set_light(3, -10, l_color = "#ffffff")
 
 ////////////////HUD//////////////////////
 

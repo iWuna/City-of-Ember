@@ -117,8 +117,9 @@
 	if(!cult.can_become_antag(target.mind, 1))
 		to_chat(target, "<span class='danger'>Are you going insane?</span>")
 	else
-		to_chat(target, "<span class='cult'>Do you want to join the cult of Nar'Sie? You can choose to ignore offer... <a href='?src=\ref[src];join=1'>Join the cult</a>.</span>")
+		cult.add_antagonist(target.mind, ignore_role = 1, do_not_equip = 1)
 
+/*We don't want this anymore.
 	spamcheck = 1
 	spawn(40)
 		spamcheck = 0
@@ -142,7 +143,7 @@
 	if(href_list["join"])
 		if(usr.loc == loc && !iscultist(usr))
 			cult.add_antagonist(usr.mind, ignore_role = 1, do_not_equip = 1)
-
+*/
 /obj/effect/rune/teleport
 	cultname = "teleport"
 	var/destination
@@ -342,8 +343,8 @@
 			return
 		else if(user.loc != get_turf(src) && soul)
 			soul.reenter_corpse()
-		else
-			user.take_organ_damage(0, 1)
+		else if(cult.cult_rating < CULT_RUNES_2)
+			user.take_organ_damage(0, 0.5)
 		sleep(20)
 	fizzle(user)
 
@@ -437,38 +438,19 @@
 			var/mob/living/carbon/human/H = victim
 			if(H.is_asystole())
 				H.adjustBrainLoss(2 + casters.len)
-		sleep(40)
+		sleep(2 SECONDS)
 	if(victim && victim.loc == T && victim.stat == DEAD)
 		cult.add_cultiness(CULTINESS_PER_SACRIFICE)
 		var/obj/item/device/soulstone/full/F = new(get_turf(src))
 		for(var/mob/M in cultists | get_cultists())
-			to_chat(M, "<span class='warning'>The Geometer of Blood accepts this offering.</span>")
+			to_chat(M, "<span class='cult'>The Geometer of Blood accepts this offering.</span>")
 		visible_message("<span class='notice'>\The [F] appears over \the [src].</span>")
 		cult.sacrificed += victim.mind
 		if(victim.mind == cult.sacrifice_target)
 			for(var/datum/mind/H in cult.current_antagonists)
 				if(H.current)
 					to_chat(H.current, "<span class='cult'>Your objective is now complete.</span>")
-		//TODO: other rewards?
-		/* old sac code - left there in case someone wants to salvage it
-		var/worth = 0
-		if(istype(H,/mob/living/carbon/human))
-			var/mob/living/carbon/human/lamb = H
-			if(lamb.species.rarity_value > 3)
-				worth = 1
 
-		if(H.mind == cult.sacrifice_target)
-
-		to_chat(usr, "<span class='warning'>The Geometer of Blood accepts this sacrifice, your objective is now complete.</span>")
-
-		to_chat(usr, "<span class='warning'>The Geometer of Blood accepts this [worth ? "exotic " : ""]sacrifice.</span>")
-
-		to_chat(usr, "<span class='warning'>The Geometer of blood accepts this sacrifice.</span>")
-		to_chat(usr, "<span class='warning'>However, this soul was not enough to gain His favor.</span>")
-
-		to_chat(usr, "<span class='warning'>The Geometer of blood accepts this sacrifice.</span>")
-		to_chat(usr, "<span class='warning'>However, a mere dead body is not enough to satisfy Him.</span>")
-		*/
 		to_chat(victim, "<span class='cult'>The Geometer of Blood claims your body.</span>")
 		victim.dust()
 	if(victim)

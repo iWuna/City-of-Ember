@@ -1,26 +1,20 @@
-/obj/item/weapon/melee/cultblade
+/obj/item/weapon/material/sword/cult
 	name = "cult blade"
 	desc = "An arcane weapon wielded by the followers of Nar-Sie."
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	edge = 1
-	sharp = 1
-	w_class = ITEM_SIZE_LARGE
-	force = 30
-	throwforce = 10
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/melee/cultblade/attack(mob/living/M, mob/living/user, var/target_zone)
-	if(iscultist(user) || (user.mind in godcult.current_antagonists))
+/obj/item/weapon/material/sword/cult/attack(mob/living/M, mob/living/user, var/target_zone)
+	if(iscultist(user) || (user.mind in godcult.current_antagonists)) // Concessions for godcult.. ew.
 		return ..()
-
-	var/zone = (user.hand ? BP_L_ARM : BP_R_ARM)
 
 	var/obj/item/organ/external/affecting = null
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		affecting = H.get_organ(zone)
+		if(src == user.l_hand)
+			affecting = H.get_organ(BP_L_ARM)
+		else
+			affecting = H.get_organ(BP_R_ARM)
 
 	if(affecting)
 		to_chat(user, "<span class='danger'>An unexplicable force rips through your [affecting.name], tearing the sword from your grasp!</span>")
@@ -28,10 +22,11 @@
 		to_chat(user, "<span class='danger'>An unexplicable force rips through you, tearing the sword from your grasp!</span>")
 
 	//random amount of damage between half of the blade's force and the full force of the blade.
-	user.apply_damage(rand(force/2, force), BRUTE, zone, 0, (DAM_SHARP|DAM_EDGE))
-	user.Weaken(5)
 
-	user.drop_from_inventory(src)
+
+	affecting.droplimb() //Blows off your fucking arm.
+
+	user.drop_from_inventory(src)//Probably not necessary.
 	throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), rand(1,3), throw_speed)
 
 	var/spooky = pick('sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg', 'sound/hallucinations/growl3.ogg', 'sound/hallucinations/wail.ogg')
@@ -39,7 +34,7 @@
 
 	return 1
 
-/obj/item/weapon/melee/cultblade/pickup(mob/living/user as mob)
+/obj/item/weapon/material/sword/cult/pickup(mob/living/user as mob)
 	if(!iscultist(user))
 		to_chat(user, "<span class='warning'>An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly.</span>")
 		user.make_dizzy(120)
