@@ -736,8 +736,9 @@ var/list/name_to_material
 
 /material/cult
 	name = "cult"
-	display_name = "disturbing stone"
+	display_name = "arkhania"
 	icon_base = "cult"
+	hardness = 60 // Puts it roughyly at parity with regular steel.
 	icon_colour = "#402821"
 	icon_reinf = "reinf_cult"
 	shard_type = SHARD_STONE_PIECE
@@ -751,6 +752,7 @@ var/list/name_to_material
 /material/cult/reinf
 	name = "cult2"
 	display_name = "runic inscriptions"
+
 
 /material/resin
 	name = "resin"
