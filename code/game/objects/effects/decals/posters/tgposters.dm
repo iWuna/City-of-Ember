@@ -1,4 +1,5 @@
 // /tg/ posters.
+/*
 /datum/poster/tg_1
 	name = "Free Tonto"
 	desc = "A framed shred of a much larger flag, colors bled together and faded from age."
@@ -18,12 +19,12 @@
 	name = "Lusty Xeno"
 	desc = "A heretical poster depicting the titular star of an equally heretical book."
 	icon_state="poster4"
-
+*/
 /datum/poster/tg_5
-	name = "Mercenary Recruitment Poster"
-	desc = "See the galaxy! Shatter corrupt megacorporations! Join today!"
+	name = "Bulwark Recruitment Poster"
+	desc = "See the galaxy! Hold them back! Join today!"
 	icon_state="poster5"
-
+/*
 /datum/poster/tg_6
 	name = "Clown"
 	desc = "Honk."
@@ -48,3 +49,4 @@
 	name = "Hacking Guide"
 	desc = "This poster details the internal workings of the common Nanotrasen airlock."
 	icon_state="poster10"
+*/
