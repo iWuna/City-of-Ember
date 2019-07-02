@@ -113,7 +113,7 @@
 	icon_state="bsposter23"
 	name = "Safety first: because electricity doesn't wait!"
 	desc = "A safety poster starring a clueless looking redhead with frazzled hair. \"Every year, hundreds of NT employees expose themselves to electric shock. Play it safe. Avoid suspicious doors after electrical storms, and always wear protection when doing electric maintenance.\""
-
+/*
 /datum/poster/bay_24
 	icon_state="bsposter24"
 	name = "Responsible medbay habits, No #259"
@@ -123,7 +123,7 @@
 	icon_state="bsposter25"
 	name = "Irresponsible medbay habits, No #2"
 	desc = "This is a safety poster starring a perverted looking naked doctor. \"Sexual harassment is never okay. REPORT any acts of sexual deviance or harassment that disrupt a healthy working environment.\""
-
+*/
 /datum/poster/bay_26
 	icon_state="bsposter26"
 	name = "The Men We Knew"
@@ -138,7 +138,7 @@
 	icon_state="bsposter28"
 	name = "The Stars Know Love"
 	desc = "This is a movie poster. A bleeding woman is shown drawing a heart in her blood on the window of space ship, it seems to be a romantic Drama."
-
+/*
 /datum/poster/bay_29
 	icon_state="bsposter29"
 	name = "Winter Is Coming"
@@ -188,7 +188,7 @@
 	icon_state="bsposter38"
 	name = "Toaster Love"
 	desc = "This is a poster of a toaster containing two slices of bread. The word LOVE is written in big pink letters underneath."
-
+*/
 /datum/poster/bay_39
 	icon_state="bsposter39"
 	name = "Responsible medbay habits, No #91"
@@ -198,12 +198,12 @@
 	icon_state="bsposter40"
 	name = "Agreeable work environment"
 	desc = "This poster depicts a young woman in a stylish dress. \"Try to aim for a pleasant atmosphere in the workspace. A friendly word can do more than forms in triplicate.\""
-
+/*
 /datum/poster/bay_41
 	icon_state="bsposter41"
 	name = "Professional work environment"
 	desc = "A safety poster featuring a green haired woman in a shimmering blue dress. \"As an Internal Affairs Agent, your job is to create a fair and agreeable work environment for the crewmembers, as discreetly and professionally as possible.\""
-
+*/
 /datum/poster/bay_42
 	icon_state="bsposter42"
 	name = "Engineering pinup"
@@ -213,22 +213,22 @@
 	icon_state="bsposter43"
 	name = "Responsible medbay habits, No #3"
 	desc = "A safety poster with a purple-haired surgeon. She looks a bit cross. \"Let the surgeons do their work. NEVER replace or remove a surgery tool from where the surgeon put it.\""
-
+/*
 /datum/poster/bay_44
 	icon_state="bsposter44"
 	name = "Time for a drink?"
 	desc = "This poster depicts a friendly-looking Tajara holding a tray of drinks."
-
+*/
 /datum/poster/bay_45
 	icon_state="bsposter45"
 	name = "Responsible engineering habits, No #1"
 	desc = "A safety poster featuring a blue haired engineer. \"When repairing a machine or construction, always aim for long-term solutions.\""
-
+/*
 /datum/poster/bay_46
 	icon_state="bsposter46"
 	name = "Inspirational lawyer"
 	desc = "An inspirational poster depicting a Skrellian lawyer. He seems to be shouting something, while pointing fiercely to the right."
-
+*/
 /datum/poster/bay_47
 	icon_state="bsposter47"
 	name = "Security pinup"
@@ -248,7 +248,7 @@
 	icon_state="bsposter50"
 	name = "Pinup Girl Cindy Kate"
 	desc = "This particular one is of Cindy Kate, a seductive performer well known among less savoury circles."
-
+/*
 /datum/poster/bay_51
 	icon_state="bsposter51"
 	name = "space appreciation poster"
@@ -278,7 +278,7 @@
 	icon_state="bsposter56"
 	name = "Mars appreciation poster"
 	desc = "This is a poster produced by the Generic Space Company, as a part of a series of commemorative posters on the wonders of space. Three of three."
-
+*/
 /datum/poster/bay_57
 	icon_state="bsposter57"
 	name = "space carp warning poster"
@@ -292,4 +292,4 @@
 /datum/poster/bay_59
 	icon_state="bsposter59"
 	name = "poster - Miss Science 2558"
-	desc = "A large piece of space-resistant printed paper. This pin-up poster depicts a woman wearing a NanoTrasen labcoat, a bikini, and a sheepish grin. She's shyly posing atop some highly specialized research equipment."
+	desc = "A large piece of space-resistant printed paper. This pin-up poster depicts a woman wearing an Agency labcoat, a bikini, and a sheepish grin. She's shyly posing atop some highly specialized research equipment."

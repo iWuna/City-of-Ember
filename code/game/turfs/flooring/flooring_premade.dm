@@ -58,7 +58,7 @@
 /turf/simulated/floor/tiled
 	name = "steel floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "steel"
+	icon_state = "steel1"
 	initial_flooring = /decl/flooring/tiling
 
 /turf/simulated/floor/carpet
@@ -152,7 +152,7 @@
 
 /turf/simulated/floor/tiled/dark
 	name = "dark floor"
-	icon_state = "dark"
+	icon_state = "dark1"
 	initial_flooring = /decl/flooring/tiling/dark
 
 /turf/simulated/floor/tiled/dark/airless
@@ -160,7 +160,7 @@
 
 /turf/simulated/floor/tiled/white
 	name = "white floor"
-	icon_state = "white"
+	icon_state = "white1"
 	initial_flooring = /decl/flooring/tiling/white
 
 /turf/simulated/floor/tiled/freezer
