@@ -242,10 +242,12 @@
 	if(GLOB.using_map.use_overmap)
 		overmap_spacetravel(get_turf(src), src)
 		return
+	if( istype(src, /obj/item) && !istype(src, /obj/item/weapon/disk/nuclear) )
+		qdel(src) //Delete whatever trash that leaves the station. It's not important. Notably, this will leave a nukedisk adrift forever. Oh well.
 
 	var/new_x
 	var/new_y
-	var/new_z = GLOB.using_map.get_transit_zlevel(z)
+	var/new_z = GLOB.using_map.get_empty_zlevel()
 	if(new_z)
 		if(x <= TRANSITIONEDGE)
 			new_x = world.maxx - TRANSITIONEDGE - 2
@@ -266,3 +268,9 @@
 		var/turf/T = locate(new_x, new_y, new_z)
 		if(T)
 			forceMove(T)
+		if(isliving(src))
+			var/mob/living/M = src
+			if(M.client) //Don't bother with clientless mobs. They're qdel()ed normally anyways.
+				M.overlay_fullscreen("SPACE HERO", /obj/screen/fullscreen/space_hero)
+				playsound(src, 'sound/music/real_hero.ogg', 50) //Condescending music. Note: Add some kind of stopsound shit to respawn so it doesn't maintain into the lobby.
+			else qdel(src) //Don't shit up my memory with your useless corpse.

@@ -149,3 +149,12 @@
 /obj/screen/fullscreen/pain
 	icon_state = "brutedamageoverlay6"
 	alpha = 0
+
+/obj/screen/fullscreen/space_hero
+	icon_state = "spacehero"
+	layer = FULLSCREEN_LAYER + 20 //Bad, but higher.
+	alpha = 0
+
+/obj/screen/fullscreen/space_hero/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = 10 SECONDS)
