@@ -16,8 +16,6 @@
 						/datum/job/chef,
 						/datum/job/chaplain,
 						/datum/job/janitor
-						///datum/job/raider,
-						///datum/job/raider/leader
 						)
 
 /datum/job/assistant
@@ -26,7 +24,6 @@
 	minimal_player_age = 14
 	economic_modifier = 3
 	ideal_character_age = 21
-	alt_titles = null
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -35,11 +32,11 @@
 
 /datum/job/captain
 	title = "Commandant"
-	supervisors = "CMA and you're good will."
+	supervisors = "KNC and you're good will."
 	minimal_player_age = 41
 	economic_modifier = 15
 	ideal_character_age = 65
-	outfit_type = /decl/hierarchy/outfit/job/dreyfus/commandant
+	outfit_type = /decl/hierarchy/outfit/job/dreyfus/directeur
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -70,7 +67,6 @@
 	total_positions = 5
 	spawn_positions = 5
 	selection_color = "#6161aa"
-	faction = "Station"
 	department_flag = COM
 	department = "Command"
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/employe
@@ -140,7 +136,6 @@
 	title = "Head Peacekeeper"
 	supervisors = "the Commandant"
 	department_flag = SEC
-	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	selection_color = "#601c1c"
@@ -158,7 +153,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(12,18), rand(10,16), rand(8,12))
+		H.add_stats(rand(12,16), rand(10,14), rand(8,12))
 		H.add_skills(rand(60, 75), rand(60,75))
 
 
@@ -166,7 +161,6 @@
 	title = "Peacekeeper"
 	department = "Security"
 	department_flag = SEC
-	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
 	economic_modifier = 4
@@ -177,7 +171,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
+		H.add_stats(rand(10,15), rand(10,14), rand(7,10))
 		H.add_skills(rand(60, 75), rand(60,75))
 
 
@@ -193,7 +187,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(8,12), rand(9,12), rand(7,10))
+		H.add_stats(rand(9,12), rand(9,12), rand(7,10))
 
 /datum/job/engineer
 	title = "Upkeeper"
@@ -203,14 +197,13 @@
 	ideal_character_age = 21
 	total_positions = 3
 	spawn_positions = 3
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/inge/inge
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
 	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+		H.add_stats(rand(9,12), rand(7,10), rand(11,14))
 
 /datum/job/mining
 	selection_color = "#7c6a2e"
@@ -226,7 +219,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,16), rand(9,12), rand(6,9))
+		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
 
 /datum/job/cargo_tech
 	selection_color = "#7c6a2e"
@@ -253,13 +246,12 @@
 	ideal_character_age = 21
 	total_positions = 2
 	spawn_positions = 2
-	faction = "Station"
 	department_flag = SUP
 	department = "Supply"
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	account_allowed = 0			  //This breaks things.
-	create_record = 1             //No one gives a fuck about kids lol.
+	create_record = 0             //No one gives a fuck about kids lol.
 	has_email = 0				  //Nor do kids get email accounts.
 	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
 
@@ -307,70 +299,9 @@
 		..()
 		H.add_stats(rand(9,12), rand(9,12), rand(5,9))
 
-//OFF STATION JOBS
-
-/datum/job/raider
-	title = "Raider"
-	department = "Civilian"
-	faction = "Station"
-	department_flag = CIV
-	total_positions = 5
-	spawn_positions = 5
-	create_record = 0
-	account_allowed = 0
-	has_email = 0
-	no_late_join = 1
-	selection_color = "#6161aa"
-	outfit_type = /decl/hierarchy/outfit/shipraiders
-
-	equip(var/mob/living/carbon/human/H)
-		..()
-		H.real_name = "[get_random_raider_name()]"//Give them a random raider nickname.
-		H.name = H.real_name
-
-		//Peacekeeper setup.
-		H.add_stats(rand(11,18), rand(10,14), rand(7,10))
-		H.add_skills(rand(60, 75), rand(60,75))
-
-		//Some dumb if shit.
-		if(prob(50))
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet(H),slot_back)
-		else if(prob(50))
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty(H),slot_back)
-		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/shitty(H),slot_back)
-
-		if(prob(50))
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H),slot_wear_mask)
-
-/datum/job/raider/leader
-	title = "Lead Raider"
-	total_positions = 1
-	spawn_positions = 1
-
-	equip(var/mob/living/carbon/human/H)
-		..()
-		H.real_name = "The Leader"
-		H.name = H.real_name
-
-//Stupid random names for them.
-/datum/job/proc/get_random_raider_name()
-	return "[pick("Spook", "Big", "Big Boy", "Big Girl", "Cheese", "Artist", "Greasy", "Dick", "Weasel", "Small", "Dixon", "Dixy", "Rat", "Knot", "Suffering", "Slick", "Scars", "Old Guy", "Heel", "Nine Lives", "Two Fingers", "Poet", "Dash", "Angel", "Bug", "Beast", "Enema", "Animal", "Oz", "Cinnamon", "Heavy", "Echo", "Cannon", "Under", "Smokes", "Joe", "Pig")]"
-
-/obj/item/clothing/under/ert/raider
-	name = "raiders uniform"
-
-
-/decl/hierarchy/outfit/shipraiders
-	name = "Raiders"
-	head = /obj/item/clothing/head/helmet/siege
-	uniform = /obj/item/clothing/under/ert/raider
-	shoes = /obj/item/clothing/shoes/jackboots
-	l_ear = /obj/item/device/radio/headset/raider
-	r_pocket = /obj/item/weapon/card/emag
-	//belt = /obj/item/weapon/gun/projectile/pistol
-	suit = /obj/item/clothing/suit/storage/vest/opvest
-	//mask = /obj/item/clothing/mask/gas
-	gloves = /obj/item/clothing/gloves/thick/swat/combat
-	//back = /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
-	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIVAL_GEAR
+/datum/job/cyborg
+	title = "Cyborg"
+	alt_titles = list(
+		"Robot",
+		"Android",
+		)

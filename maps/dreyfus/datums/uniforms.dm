@@ -1,8 +1,8 @@
-/decl/hierarchy/outfit/job/dreyfus/magistrate
-	name = OUTFIT_JOB_NAME("Magistrate")
+/decl/hierarchy/outfit/job/dreyfus/directeur
+	name = OUTFIT_JOB_NAME("Directeur Executif")
 	l_ear = /obj/item/device/radio/headset/heads/captain
 	uniform = /obj/item/clothing/under/rank/internalaffairs/plain/nt
-	suit = /obj/item/clothing/suit/leathercoat
+	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
 	shoes = /obj/item/clothing/shoes/dress
 	glasses = /obj/item/clothing/glasses/sunglasses/big
 	l_hand = /obj/item/weapon/storage/briefcase
@@ -76,7 +76,6 @@
 	r_pocket = /obj/item/weapon/handcuffs
 	id_type = /obj/item/weapon/card/id/dreyfus/sec
 	pda_type = /obj/item/device/pda/security
-	pda_slot = slot_l_store //So they don't lose their PDA.
 
 /decl/hierarchy/outfit/job/security/head_peacekeeper
 	name = OUTFIT_JOB_NAME("Head Peacekeeper")

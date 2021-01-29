@@ -20,7 +20,7 @@
 	density = 1
 	anchored = 1
 
-/obj/structure/stacklifter/attack_hand(var/mob/living/user)
+/obj/structure/stacklifter/attack_hand(mob/user as mob)
 	if(in_use)
 		to_chat(user, "It's already in use - wait a bit.")
 		return
@@ -29,7 +29,6 @@
 		icon_state = "fitnesslifter2"
 		user.facedir(SOUTH)
 		user.Stun(4)
-		user.adjustStaminaLoss(rand(20,40))
 		user.loc = src.loc
 		var/lifts = 0
 		while (lifts++ < 6)
@@ -48,8 +47,6 @@
 		var/finishmessage = pick("You feel stronger!","You feel like you can take on the world!","You feel robust!","You feel indestructible!")
 		icon_state = "fitnesslifter"
 		to_chat(user, "[finishmessage]")
-		if(prob(1))
-			user.adjustStrength(1)
 
 /obj/structure/weightlifter
 	name = "Weight Machine"
@@ -59,7 +56,7 @@
 	density = 1
 	anchored = 1
 
-/obj/structure/weightlifter/attack_hand(var/mob/living/user)
+/obj/structure/weightlifter/attack_hand(mob/user as mob)
 	if(in_use)
 		to_chat(user, "It's already in use - wait a bit.")
 		return
@@ -68,7 +65,6 @@
 		icon_state = "fitnessweight-c"
 		user.facedir(SOUTH)
 		user.Stun(4)
-		user.adjustStaminaLoss(rand(20,40))
 		user.loc = src.loc
 		var/image/W = image('goon/icons/obj/fitness.dmi',"fitnessweight-w")
 		W.plane = ABOVE_HUMAN_PLANE
@@ -96,5 +92,3 @@
 		icon_state = "fitnessweight"
 		overlays -= W
 		to_chat(user, "[finishmessage]")
-		if(prob(1))
-			user.adjustStrength(1)

@@ -16,12 +16,11 @@
 //actually railing code
 /obj/structure/railing
 	name = "railing"
-	desc = "A standard steel railing. Prevents human stupidity."
+	desc = "A standart steel railing. Prevents from human stupidity."
 	icon = 'maps/dreyfus/icons/railing.dmi'
 	density = 1
 	throwpass = 1
-	//layer = 3.2//Just above doors 	//Layers mean nothing.
-	plane = ABOVE_HUMAN_PLANE // They go ontop of humans.
+	layer = 3.2//Just above doors
 	//pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1
 	flags = ON_BORDER
@@ -52,18 +51,14 @@
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!mover)
-		return TRUE
+		return 1
 
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return TRUE
-
-	if (locate(/obj/structure/table) in get_turf(mover))
-		return TRUE
-
+		return 1
 	if(get_dir(loc, target) == dir)
 		return !density
 	else
-		return TRUE
+		return 1
 //32 и 4 - в той же клетке
 
 /obj/structure/railing/examine(mob/user)
